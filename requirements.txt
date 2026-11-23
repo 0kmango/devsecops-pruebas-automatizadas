@@ -1,0 +1,1 @@
+# requirements.txt - Dependencias del proyecto (guía 3.2.3)

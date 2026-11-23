@@ -39,5 +39,12 @@ jobs:
       - name: Validar sintaxis del código
         run: python -m compileall -q app.py
 
-      - name: Ejecutar pruebas automatizadas
-        run: pytest -v
+      - name: Ejecutar pruebas con cobertura
+        run: pytest -v --cov=. --cov-report=term-missing --cov-report=xml
+
+      - name: Publicar el reporte de cobertura
+        uses: actions/upload-artifact@v4
+        with:
+          name: cobertura-python-${{ matrix.python-version }}
+          path: coverage.xml
+          if-no-files-found: error

@@ -1,0 +1,43 @@
+name: CI
+
+# Se ejecuta en cada push a main, en cada pull request y a mano desde la
+# pestaña "Actions". Así cualquier cambio se valida antes de fusionarse.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# Permisos mínimos: este workflow solo necesita leer el código.
+permissions:
+  contents: read
+
+jobs:
+  pruebas:
+    name: Pruebas automatizadas (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Validar sintaxis del código
+        run: python -m compileall -q app.py
+
+      - name: Ejecutar pruebas automatizadas
+        run: pytest -v

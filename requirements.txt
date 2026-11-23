@@ -1,1 +1,12 @@
 # requirements.txt - Dependencias del proyecto (guía 3.2.3)
+#
+# La aplicación base (app.py) solo usa la biblioteca estándar de Python, por lo
+# que no necesita dependencias de ejecución. Aquí se declaran las dependencias
+# de desarrollo para que Jenkins y GitHub Actions puedan instalar un entorno
+# limpio y ejecutar la suite de pruebas automatizadas.
+
+# Pruebas automatizadas
+pytest>=8.0.0
+
+# Reporte de cobertura (opcional, útil para el informe de la evaluación)
+pytest-cov>=5.0.0

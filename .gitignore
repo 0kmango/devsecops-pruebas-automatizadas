@@ -1,0 +1,25 @@
+# Python: bytecode y cachés de ejecución
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Entornos virtuales (Jenkins y local crean .venv)
+.venv/
+venv/
+env/
+
+# Herramientas de pruebas y reportes
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+resultados/
+
+# Editores e IDEs
+.vscode/
+.idea/
+*.swp
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
